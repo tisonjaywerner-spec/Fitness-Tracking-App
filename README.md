@@ -1,6 +1,7 @@
 # WorkoutDB — Personal Fitness Tracking Application
 
 **Stack:** C# (ASP.NET Core Minimal API), Azure SQL Database, Azure App Service, Chart.js, T-SQL
+
 **Status:** Deployed and in active use
 
 ## Overview
