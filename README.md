@@ -27,7 +27,7 @@ Normalized relational schema in Azure SQL Database:
 
 **Relationships:** `DailySummary` (1) → (many) `Exercises`; `ExerciseDefinitions` → `Exercises`
 
-`[Add ER diagram image here]`
+`![ER Diagram](docs/workoutdb.er-diagram.png)`
 
 ## Architecture
 
