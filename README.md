@@ -1,63 +1,93 @@
-# Personal Fitness Tracking Application
+# WorkoutDB — Personal Fitness Tracking Application
 
-**Tools:** C#, ASP.NET, Azure SQL Database, Azure App Service, Power BI, Chart.js
-**Timeline:** Completed June 2026
+**Stack:** C# (ASP.NET Core Minimal API), Azure SQL Database, Azure App Service, Chart.js, T-SQL
+**Status:** Deployed and in active use
 
 ## Overview
 
-A full-stack web application for tracking workouts, built from scratch with no prior C# experience, using
-AI-assisted development to accelerate learning and implementation. Managed solo using Scrum methodology.
+A full-stack workout tracking application built from scratch with no prior C# experience, using AI-assisted development to accelerate learning. Planned and managed solo using Scrum methodology — full Product Backlog, Sprint Backlog, and Definition of Ready/Done written before any code.
 
-## Business Problem / Goal
+## Problem
 
-Needed a personal tool to log workouts and visualize training trends over time — and used the project as a way
-to learn full-stack development and relational database design end-to-end.
+Workout tracking in Excel had hit its limits:
+- Fixed columns per exercise — couldn't adapt when the routine changed
+- No way to track partial completion (fewer sets/reps than planned)
+- Manual, error-prone data entry (scrolling a spreadsheet mid-workout)
+- Growing null values with no clear structure
 
 ## Data Model
 
-Designed and normalized a relational database schema from scratch in Azure SQL Database.
+Normalized relational schema in Azure SQL Database:
 
-`[TODO: replace with an ER diagram of your schema — tables, keys, relationships]`
-`[TODO: briefly describe the core tables, e.g., Users, Workouts, Exercises, Sets]`
+| Table | Purpose |
+|---|---|
+| `DailySummary` | One row per day — sleep hours, sleep quality, abs completion, notes |
+| `Exercises` | One row per exercise performed — links to a day, tracks actual vs. planned sets/reps/weight |
+| `ExerciseDefinitions` | Reusable exercise templates — name, category, default sets/reps |
+
+**Relationships:** `DailySummary` (1) → (many) `Exercises`; `ExerciseDefinitions` → `Exercises`
+
+`[Add ER diagram image here]`
 
 ## Architecture
 
 ```
-User
-  ↓
-ASP.NET (C#)
-  ↓
-Azure SQL Database
-  ↓
-Power BI / Chart.js (workout trend dashboards)
+Browser (phone or desktop)
+   ↓
+ASP.NET Core Minimal API (C#)
+   ↓
+Azure SQL Database (WorkoutDB)
+   ↓
+Chart.js dashboards (rendered client-side from JSON API endpoints)
 ```
 
-`[TODO: replace with your own architecture diagram]`
+Hosted on Azure App Service, so it's accessible from any browser — no local network or Remote Desktop workaround needed.
+
+## Features
+
+- Log actual vs. planned sets, reps, and weight per exercise
+- Multi-exercise entry in a single form submission
+- Duplicate exercise prevention
+- Workout location tracking (dropdown)
+- Daily summary: sleep hours, sleep quality, abs completion
+- Two in-app dashboards:
+  - **Overview** (`/dashboard`) — trends across all workouts
+  - **Per-exercise** (`/dashboard/exercise`) — progression on a single lift
+
+## Design Decisions & Pivots
+
+- **Power BI → in-app dashboards:** Started with Power BI, but its mobile app requires a work/school Microsoft account. Rebuilt the dashboards directly in the ASP.NET app with Chart.js instead — one less moving part, and works on any phone browser.
+- **Row-based exercise tracking:** Avoided a fixed column per exercise so the schema stays flexible as the routine changes over time.
+- **Planning before code:** Wrote a 21-story Product Backlog across epics, plus Sprint Backlog and Definition of Ready/Done, before writing any C#.
+
+## SQL Highlights
+
+`[Add 2-4 representative queries here — e.g. the dashboard aggregation query, the PR/progress calculation, the data-cleaning script that backfilled nulls and normalized exercise names]`
 
 ## Development Approach
 
-- Applied Scrum methodology solo: maintained a Product Backlog, ran Sprint planning, tracked work on a Kanban board
-- Built the ASP.NET application in C#
-- Deployed to Azure App Service for mobile access
-- Started visualizations in Power BI, then migrated to Chart.js for in-app dashboards
+- Solo Scrum: Product Backlog → Sprint Backlog → sprint execution, tracked on a formula-driven Kanban board (Excel `FILTER`/`VSTACK`)
+- Iterative, AI-assisted build — one feature/bug at a time
+- Legacy Excel data cleaned via T-SQL (null backfill, name normalization, category corrections) before import
 
-`[TODO: replace with screenshots of the Kanban board / sprint backlog]`
-
-## Results
-
-- Delivered a working, deployed full-stack application solo
-- Built interactive dashboards for workout trend analysis
-- Learned C#, ASP.NET, and Azure SQL from zero prior experience
-
-`[TODO: replace with screenshots of the live app UI and dashboards]`
-`[TODO: add live app link if still deployed, e.g., https://yourapp.azurewebsites.net]`
-
-## Repo Structure (suggested)
+## Repo Structure
 
 ```
-fitness-tracking-app/
+WorkoutDB/
 ├── README.md
-├── src/               # ASP.NET / C# source code
-├── docs/              # ER diagram, architecture diagram
-└── screenshots/        # UI and dashboard images
+├── src/               # ASP.NET Core source (C#)
+├── sql/               # Schema creation + key T-SQL queries
+├── docs/              # ER diagram, architecture notes
+└── screenshots/       # Dashboard and app UI
 ```
+
+## Live App
+
+`[Add link if you want it public, e.g. https://tisons-workout-tracker.azurewebsites.net]`
+
+## What I Learned
+
+- Building a relational schema from scratch and normalizing it as requirements changed
+- ASP.NET Core minimal API design and deployment to Azure App Service
+- Azure networking/firewall configuration (rules live at the server level, not the database)
+- Applying Scrum discipline to a solo project
