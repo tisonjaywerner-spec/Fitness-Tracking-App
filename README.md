@@ -82,6 +82,10 @@ WorkoutDB/
 └── screenshots/       # Dashboard and app UI
 ```
 
+## Live App
+
+![Final Version](screenshots/demo.gif)
+
 ## What I Learned
 
 - Building a relational schema from scratch and normalizing it as requirements changed
