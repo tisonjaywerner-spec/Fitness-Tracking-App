@@ -82,10 +82,6 @@ WorkoutDB/
 └── screenshots/       # Dashboard and app UI
 ```
 
-## Live App
-
-`[Add link if you want it public, e.g. https://tisons-workout-tracker.azurewebsites.net]`
-
 ## What I Learned
 
 - Building a relational schema from scratch and normalizing it as requirements changed
