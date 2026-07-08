@@ -63,7 +63,7 @@ Hosted on Azure App Service, so it's accessible from any browser, which means no
 
 ## SQL Highlights
 
-`[Add 2-4 representative queries here — e.g. the dashboard aggregation query, the PR/progress calculation, the data-cleaning script that backfilled nulls and normalized exercise names]`
+
 
 ## Development Approach
 
