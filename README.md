@@ -84,7 +84,7 @@ WorkoutDB/
 
 ## Live App
 
-![Final Version](screenshots/demo.gif)
+https://1workoutinputapp20260702104629-fjg4hsc9hhd7cdbg.centralus-01.azurewebsites.net/
 
 ## What I Learned
 
